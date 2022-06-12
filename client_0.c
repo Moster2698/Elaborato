@@ -184,12 +184,10 @@ int main(int argc, char *argv[])
 		int check = (p1)->indici_messagi[0];
 		if(check == 1)
 		{
-			printf("ho recuperato il messaggio\n");
 			(p1)->indici_messagi[0]=0;
 			semOp(semID, 1, 1);
 		}
 		else{
-			printf("non ho recuperato il messaggio\n");
 			semOp(semID, 1, 1);
 			exit(-1);
 		}
