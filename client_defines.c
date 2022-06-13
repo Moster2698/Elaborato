@@ -185,15 +185,6 @@ void init_ipcs()
 	msgqID = msgget(MSG_KEY, IPC_CREAT | S_IRUSR | S_IWUSR);
 	if (msgqID == -1)
 		err_exit("msgqueue failed -");
-	struct msqid_ds ds;
-	if (msgctl(msgqID, IPC_STAT, &ds) == -1)
-		err_exit("msgctl get dimension ");
-	// Change the upper limit on the number of bytes in the mtext // fields of all
-	// messages in the message queue to 50 messagges
-	ds.msg_qbytes = sizeof(struct message);
-	// Update associated data structure in kernel
-	if (msgctl(msgqID, IPC_SET, &ds) == -1)
-		err_exit("msgctl set dimension ");
 	free(fifo1_path);
 	free(fifo2_path);
 }
